@@ -2,19 +2,17 @@ from sys import stdin
 input = stdin.readline
 
 n = int(input())
- 
-arr = []  
-ans = []  
-for i in range(n):
+
+arr = [] 
+ans = [1 for _ in range(n)]
+
+for _ in range(n):
     a, b = map(int, input().split())
-    arr.append((a, b))  
- 
-for i in range(n):
-    count = 0
-    for j in range(n):
-        if arr[i][0] < arr[j][0] and arr[i][1] < arr[j][1]:  
-            count += 1 
-    ans.append(count + 1)  
- 
-for d in ans:
-    print(d,end=" ")
+    arr.append((a, b))
+    
+for j in range(n):
+    for l in range(n):
+        if arr[j][0] > arr[l][0] and arr[j][1] > arr[l][1]:
+            ans[l]+=1
+        
+print(*ans)
