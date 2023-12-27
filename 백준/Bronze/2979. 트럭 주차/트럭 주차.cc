@@ -1,39 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
+vector<int>t(100, 0);
+string s;
+int a, b, c, t1, t2, cnt;
 
-int main(){
-
-    int a,b,c;
-    int s,e;
-    int chk[100] = {0, };
-    int money = 0;
-
-    cin >> a >> b >> c;
-
-
-    for (int i = 0; i < 3; i++){
-        cin >> s >> e;
-        for (int j = s; j < e; j++){
-            chk[j]++;
-        }       
+int main() {
+    scanf("%d %d %d", &a, &b, &c);
+    for (int i = 0; i < 3; i++) {
+        scanf("%d %d", &t1, &t2);
+        for (int j = t1; j < t2; j++) {
+            t[j]+=1;
+        }
     }
     
-    for (int i = 0; i<100; i++){
-        if (chk[i]==0){
+    for (int it: t) {
+        if (it == 0) {
             continue;
-        }
-        else if (chk[i]==1){
-            money = money + a;
-        }
-        else if (chk[i]==2){
-            money = money + b*2;
-        }
-        else if (chk[i]==3){
-            money = money + c*3;
-        }
-        else {
-            continue;
+        } else if (it == 1) {
+            cnt += (a * 1);
+        } else if (it == 2) {
+            cnt += (b * 2);
+        } else {
+            cnt += (c * 3);
         }
     }
-    cout << money;
+
+    cout << cnt;
+
+    return 0;
 }
