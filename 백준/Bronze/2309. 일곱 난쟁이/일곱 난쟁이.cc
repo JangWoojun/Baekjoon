@@ -1,73 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
+vector<int> v(9);
+vector<int> ans(7);
+int cnt = 0;
 
-int main (){
-    int sum;
-    int out[9] = {0, };
-    int nums[9];
-    int num = 0;
-    int chk = 0;
-
-    for (int i = 0; i < 9; i++)
-    {
-        cin >> sum;
-        nums[i]=sum;
-        num+=sum;
-
-    }
+int main() {
+    for (int i = 0; i < 9; i++) cin >> v[i];
+    sort(v.begin(), v.end());
+    do {
+        cnt = 0;
+        for(int i = 0; i < 7; i++) {
+            cnt+=v[i];
+            ans[i] = v[i];
+        }
+        if (cnt == 100) break;
+    } while (next_permutation(v.begin(), v.end()));
     
-    for (int i = 0; i<9; i++){
-        num=num-nums[i];
-        if (chk==100){
-            break;
-        }
-        else{
-        for (int l = 0; l < 9; l++){
-           if (nums[l]!=nums[i]) {
-                num=num-nums[l];
-                if (num == 100){
-                    for (int j = 0; j<9; j++){
-                        if (nums[j]!=nums[i]){
-                            if (nums[j]!=nums[l]){
-                                out[j]=nums[j];
-                                chk=chk+nums[j];
-                            }
-                            else {
-                                continue;
-                            }
-                        }
-                        else {
-                            continue;
-                        } 
-                    }
-                }
-                else {    
-                    num=num+nums[l];
-                    continue;
-                }
-           }
-           else if (nums[l]==nums[i]){
-                continue;
-           }
-           else {
-                num=num+nums[l];
-           }
-        }
-        num=num+nums[i];
-        }
 
-    }
+    for(auto it: ans) cout << it <<"\n";
 
-    sort(out,out+9);
-
-    for (size_t i = 0; i < 9; i++)
-    {
-        if (out[i]>0){
-            cout << out[i] << "\n";
-        }
-        else {
-            continue;
-        }
-    }
-    
+    return 0;
 }
